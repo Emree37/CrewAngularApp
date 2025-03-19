@@ -1,0 +1,49 @@
+mat-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+mat-header-cell,
+mat-cell {
+    padding: 12px;
+    text-align: left;
+}
+
+mat-header-row,
+mat-row {
+    border-bottom: 1px solid #ddd;
+}
+
+button.mat-button {
+    padding: 0;
+    text-align: center;
+    font-size: 14px;
+    min-width: 100px;
+}
+
+mat-menu {
+    min-width: 150px;
+}
+
+button.mat-menu-item {
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+mat-header-row {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+mat-cell {
+    padding: 16px 10px;
+}
+
+mat-row:hover {
+    background-color: #f7f7f7;
+}
+
+mat-header-cell {
+    text-align: left;
+    font-size: 16px;
+}
