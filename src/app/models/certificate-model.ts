@@ -1,6 +1,7 @@
 export interface CertificateModel {
     id: number;
     name: string;
-    date: string;
+    issueDate: string;
+    expiryDate: string;
     certificateTypeId: number;
 }
