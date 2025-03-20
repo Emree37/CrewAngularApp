@@ -92,5 +92,16 @@ export class CrewService {
     }
   }
 
+  getTotalIncomeUSD(): number {
+    return this.crewList
+      .filter(crew => !crew.isDeleted && crew.currency === 'USD')
+      .reduce((total, crew) => total + crew.totalIncome, 0);
+  }
+
+  getTotalIncomeEUR(): number {
+    return this.crewList
+      .filter(crew => !crew.isDeleted && crew.currency === 'EUR')
+      .reduce((total, crew) => total + crew.totalIncome, 0);
+  }
 }
 

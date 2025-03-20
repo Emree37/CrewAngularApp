@@ -57,6 +57,15 @@
         <td mat-cell *matCellDef="let crew"> {{ crew.dailyRate }} {{ crew.currency }} </td>
     </ng-container>
 
+    <!-- Discount Column -->
+    <ng-container matColumnDef="discount">
+        <th mat-header-cell *matHeaderCellDef> Discount (%) </th>
+        <td mat-cell *matCellDef="let crew">
+            <input type="number" min="0" max="100" [ngModel]="discountValues[crew.id]"
+                (ngModelChange)="updateTotalIncome($event, crew)">
+        </td>
+    </ng-container>
+
     <!-- Total Income Column -->
     <ng-container matColumnDef="totalIncome">
         <th mat-header-cell *matHeaderCellDef> Total Income </th>
@@ -79,3 +88,17 @@
     <!-- Data Row -->
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<mat-card class="total-income-card">
+    <mat-card-title>Total Income Summary</mat-card-title>
+    <mat-card-content>
+        <div class="income-row">
+            <mat-icon class="currency-icon">attach_money</mat-icon>
+            <p><strong>USD:</strong> {{ totalIncomeUSD }} USD</p>
+        </div>
+        <div class="income-row">
+            <mat-icon class="currency-icon">euro</mat-icon>
+            <p><strong>EUR:</strong> {{ totalIncomeEUR }} EUR</p>
+        </div>
+    </mat-card-content>
+</mat-card>
