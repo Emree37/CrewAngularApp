@@ -1,0 +1,26 @@
+<mat-dialog-content class="dialog-content">
+    <h2>Add Certificate</h2>
+
+    <!-- Certificate Name Input -->
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Certificate Name</mat-label>
+        <input matInput [(ngModel)]="certificate.name" required>
+    </mat-form-field>
+
+    <!-- Certificate Type Dropdown -->
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Certificate Type</mat-label>
+        <mat-select [(ngModel)]="certificate.certificateTypeId" required>
+            <mat-option *ngFor="let type of data.certificateTypes" [value]="type.id">
+                {{ type.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="close()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="!certificate.name || certificate.certificateTypeId === null">
+        Save
+    </button>
+</mat-dialog-actions>

@@ -6,11 +6,14 @@ import { CertificateTypeService } from '../services/certificate-type/certificate
 
 import { CertificateViewModel } from '../models/view-models/certificate-view-model';
 
+import { AddCertificateModalComponent } from './add-certificate-modal/add-certificate-modal.component';
+
 // Angular Material
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-certificates',
@@ -25,10 +28,15 @@ export class CertificatesComponent implements OnInit {
   constructor(
     private certificateService: CertificateService,
     private certificateTypeService: CertificateTypeService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.loadCertificates();
+  }
+
+  loadCertificates(): void {
     const certificates = this.certificateService.getCertificates();
     const certificateTypes = this.certificateTypeService.getCertificateTypes();
 
@@ -48,6 +56,21 @@ export class CertificatesComponent implements OnInit {
   }
 
   addCertificate(): void {
-    alert("Add Certificate Modal Açılacak!");
+    const dialogRef = this.dialog.open(AddCertificateModalComponent, {
+      width: '400px',
+      data: { certificateTypes: this.certificateTypeService.getCertificateTypes() }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const newId = this.certificateService.getNextCertificateId();
+        this.certificateService.addCertificate({
+          id: newId,
+          name: result.name,
+          certificateTypeId: result.certificateTypeId
+        });
+        this.loadCertificates();
+      }
+    });
   }
 }

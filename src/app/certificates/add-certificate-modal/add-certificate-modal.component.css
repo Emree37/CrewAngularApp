@@ -1,0 +1,15 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}

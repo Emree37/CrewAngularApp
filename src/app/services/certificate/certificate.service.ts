@@ -21,4 +21,13 @@ export class CertificateService {
     return this.certificates.filter(cert => certificateIds.includes(cert.id));
   }
 
+  getNextCertificateId(): number {
+    return this.certificates.length > 0 
+      ? Math.max(...this.certificates.map(cert => cert.id)) + 1 
+      : 1;
+  }
+
+  addCertificate(newCertificate: CertificateModel): void {
+    this.certificates.push(newCertificate);
+  }
 }
