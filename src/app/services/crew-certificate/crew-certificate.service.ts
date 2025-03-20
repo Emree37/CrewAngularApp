@@ -23,4 +23,8 @@ export class CrewCertificateService {
   addCrewCertificate(newCrewCertificate: CrewCertificateModel): void {
     this.crewCertificates.push(newCrewCertificate);
   }
+
+  removeCrewCertificate(crewId: number, certificateId: number): void {
+    this.crewCertificates = this.crewCertificates.filter(cert => !(cert.crewId === crewId && cert.certificateId === certificateId));
+  }
 }

@@ -20,4 +20,10 @@ export class CertificateTypeService {
   addCertificateType(newType: CertificateTypeModel): void {
     this.certificateTypes = [...this.certificateTypes, newType];
   }
+
+  getNextCertificateTypeId(): number {
+    return this.certificateTypes.length > 0
+      ? Math.max(...this.certificateTypes.map(t => t.id)) + 1
+      : 1;
+  }
 }

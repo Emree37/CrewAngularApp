@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class AddCertificateTypeModalComponent {
   certificateType = {
+    id: 0,
     name: '',
     description: ''
   };
@@ -29,6 +30,10 @@ export class AddCertificateTypeModalComponent {
   }
 
   save(): void {
+    if (!this.certificateType.name || !this.certificateType.description) {
+      return;
+    }
+  
     this.dialogRef.close(this.certificateType);
   }
 }

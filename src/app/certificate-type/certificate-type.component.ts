@@ -41,6 +41,7 @@ export class CertificateTypeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        result.id = this.certificateTypeService.getNextCertificateTypeId();
         this.certificateTypeService.addCertificateType(result);
         this.loadCertificateTypes();
       }

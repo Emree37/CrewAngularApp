@@ -1,7 +1,6 @@
 <h2 mat-dialog-title>Edit Crew</h2>
 <mat-dialog-content class="edit-crew-content">
     <form>
-
         <!-- First Name -->
         <mat-form-field appearance="outline">
             <mat-label>First Name</mat-label>
@@ -14,7 +13,7 @@
             <input matInput [(ngModel)]="crew.lastName" name="lastName" required>
         </mat-form-field>
 
-        <!-- Nationality (Dropdown) -->
+        <!-- Nationality -->
         <mat-form-field appearance="outline">
             <mat-label>Nationality</mat-label>
             <mat-select [(ngModel)]="crew.nationality" name="nationality">
@@ -22,7 +21,7 @@
             </mat-select>
         </mat-form-field>
 
-        <!-- Title (Dropdown) -->
+        <!-- Title -->
         <mat-form-field appearance="outline">
             <mat-label>Title</mat-label>
             <mat-select [(ngModel)]="crew.title" name="title">
@@ -33,13 +32,15 @@
         <!-- Days On Board -->
         <mat-form-field appearance="outline">
             <mat-label>Days On Board</mat-label>
-            <input matInput type="number" [(ngModel)]="crew.daysOnBoard" name="daysOnBoard" required>
+            <input matInput type="number" [(ngModel)]="crew.daysOnBoard" name="daysOnBoard"
+                (ngModelChange)="updateTotalIncome()">
         </mat-form-field>
 
         <!-- Daily Rate -->
         <mat-form-field appearance="outline">
             <mat-label>Daily Rate</mat-label>
-            <input matInput type="number" [(ngModel)]="crew.dailyRate" name="dailyRate" required>
+            <input matInput type="number" [(ngModel)]="crew.dailyRate" name="dailyRate"
+                (ngModelChange)="updateTotalIncome()">
         </mat-form-field>
 
         <!-- Currency -->
@@ -54,9 +55,8 @@
         <!-- Total Income (Read-Only) -->
         <mat-form-field appearance="outline">
             <mat-label>Total Income</mat-label>
-            <input matInput [value]="crew.daysOnBoard * crew.dailyRate | number" readonly>
+            <input matInput [value]="crew.totalIncome | number" readonly>
         </mat-form-field>
-
     </form>
 </mat-dialog-content>
 

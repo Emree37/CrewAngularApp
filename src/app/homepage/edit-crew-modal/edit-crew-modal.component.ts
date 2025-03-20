@@ -7,8 +7,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 import { CrewService } from '../../services/crew/crew.service';
+
 import { CrewModel } from '../../models/crew-model';
 
 @Component({
@@ -20,7 +23,9 @@ import { CrewModel } from '../../models/crew-model';
     MatInputModule,
     MatSelectModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatIconModule
   ],
   templateUrl: './edit-crew-modal.component.html',
   styleUrl: './edit-crew-modal.component.css'
@@ -40,11 +45,13 @@ export class EditCrewModalComponent {
   }
 
   save(): void {
-    this.crew.totalIncome = this.crew.daysOnBoard * this.crew.dailyRate;
-    console.log("Güncellenen Crew:", this.crew); // 🛠 DEBUG: Kaydetme öncesi değerleri göster
-
+    this.updateTotalIncome();
     this.crewService.updateCrew(this.crew);
     this.dialogRef.close({ success: true });
+  }
+
+  updateTotalIncome(): void {
+    this.crew.totalIncome = this.crew.daysOnBoard * this.crew.dailyRate;
   }
 
   close(): void {
