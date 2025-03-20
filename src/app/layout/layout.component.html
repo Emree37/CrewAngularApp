@@ -1,17 +1,8 @@
-<mat-toolbar color="primary" class="top-navbar">
-    <span class="app-title">CREW ANGULAR APP</span>
-  </mat-toolbar>
-  
-  <mat-toolbar class="bottom-navbar">
-    <button mat-button routerLink="/">Homepage</button>
-  
-    <span class="spacer"></span>
-    <mat-form-field appearance="outline" class="language-selector">
-      <mat-label>Language</mat-label>
-      <mat-select [(ngModel)]="selectedLanguage">
-        <mat-option *ngFor="let lang of languages" [value]="lang">{{ lang }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </mat-toolbar>
-  
-  <router-outlet></router-outlet>
+<app-navbar></app-navbar>
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
+
+<footer class="footer">
+    © 2025 Crew Angular App. All Rights Reserved.
+</footer>

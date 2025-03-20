@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AddCrewModalComponent } from './add-crew-modal/add-crew-modal.component';
 import { EditCrewModalComponent } from './edit-crew-modal/edit-crew-modal.component';
+import { LanguageService } from '../services/language/language.service';
 
 //Router
 import { Router } from '@angular/router';
@@ -33,11 +34,35 @@ export class HomepageComponent implements OnInit {
   totalIncomeEUR: number = 0;
   discountValues: { [key: number]: number } = {};
 
-  constructor(private crewService: CrewService, private router: Router, private dialog: MatDialog) { }
+  columnHeaders: string[] = [];
+  columnNames: any = {
+    English: ['Action Menu', 'First Name', 'Last Name', 'Nationality', 'Title', 'Days On Board', 'Daily Rate', 'Discount', 'Total Income', 'Certificates'],
+    French: ['Menu d\'action', 'Prénom', 'Nom', 'Nationalité', 'Titre', 'Jours à bord', 'Tarif journalier', 'Remise', 'Revenu total', 'Certificats'],
+    Portuguese: ['Menu de Ação', 'Nome', 'Sobrenome', 'Nacionalidade', 'Título', 'Dias a Bordo', 'Tarifa Diária', 'Desconto', 'Renda Total', 'Certificados']
+  };
+
+  constructor(private crewService: CrewService, private router: Router, private dialog: MatDialog, private languageService: LanguageService) { }
+
 
   ngOnInit(): void {
     this.loadCrewData();
+
+    this.languageService.currentLanguage.subscribe(lang => {
+      this.updateColumns(lang);
+    });
   }
+
+  updateColumns(language: string): void {
+    const translatedColumns = this.columnNames[language];
+
+    if (!translatedColumns) {
+        return;
+    }
+
+    this.displayedColumns = ['actionMenu', 'firstName', 'lastName', 'nationality', 'title', 'daysOnBoard', 'dailyRate', 'discount', 'totalIncome', 'certificates'];
+
+    this.columnHeaders = translatedColumns;
+}
 
   loadCrewData(): void {
     this.crewList = this.crewService.getCrews();
@@ -53,7 +78,7 @@ export class HomepageComponent implements OnInit {
       width: '500px',
       data: { crew }
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result?.success) {
         this.loadCrewData();

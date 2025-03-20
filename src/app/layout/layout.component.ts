@@ -6,9 +6,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
+  standalone: true,
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -16,14 +19,16 @@ import { RouterModule } from '@angular/router';
     MatSelectModule,
     MatFormFieldModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    RouterOutlet,
+    NavbarComponent
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
   selectedLanguage = 'English';
-  languages = ['Turkish', 'English', 'French', 'Portuguese'];
+  languages = ['English', 'French', 'Portuguese'];
 
   constructor() {}
 

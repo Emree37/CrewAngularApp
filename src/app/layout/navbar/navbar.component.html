@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="title-container">
+    <span class="title">CREW ANGULAR APP</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <div class="language-selector">
+    <mat-select [(ngModel)]="selectedLanguage" (selectionChange)="changeLanguage($event.value)">
+      <mat-option *ngFor="let lang of languages" [value]="lang.value">
+        {{ lang.label }}
+      </mat-option>
+    </mat-select>
+  </div>
+</mat-toolbar>

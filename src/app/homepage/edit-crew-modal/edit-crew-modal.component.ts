@@ -33,7 +33,7 @@ import { CrewModel } from '../../models/crew-model';
 export class EditCrewModalComponent {
   crew: CrewModel;
 
-  nationalities: string[] = ['Turkish', 'French', 'English', 'Portuguese'];
+  nationalities: string[] = ['English', 'French', 'Portuguese'];
   titles: string[] = ['Captain', 'Cooker', 'Engineer', 'Mechanicer'];
 
   constructor(

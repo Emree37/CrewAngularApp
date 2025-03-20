@@ -21,3 +21,19 @@
 .language-selector {
     width: 150px;
 }
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #1976d2;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}

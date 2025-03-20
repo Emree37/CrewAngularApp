@@ -47,7 +47,7 @@ export class AddCrewModalComponent implements OnInit {
   };
 
   titleList = ['Captain', 'Engineer', 'Cooker', 'Mechanicer'];
-  nationalityList = ['Turkish', 'French', 'English', 'Portuguese'];
+  nationalityList = ['English', 'French', 'Portuguese'];
   currencyList = ['USD', 'EUR'];
 
   showCertificateForm = false;
