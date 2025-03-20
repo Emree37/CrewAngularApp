@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Edit Crew</h2>
+<mat-dialog-content class="edit-crew-content">
+    <form>
+
+        <!-- First Name -->
+        <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput [(ngModel)]="crew.firstName" name="firstName" required>
+        </mat-form-field>
+
+        <!-- Last Name -->
+        <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="crew.lastName" name="lastName" required>
+        </mat-form-field>
+
+        <!-- Nationality (Dropdown) -->
+        <mat-form-field appearance="outline">
+            <mat-label>Nationality</mat-label>
+            <mat-select [(ngModel)]="crew.nationality" name="nationality">
+                <mat-option *ngFor="let country of nationalities" [value]="country">{{ country }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Title (Dropdown) -->
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <mat-select [(ngModel)]="crew.title" name="title">
+                <mat-option *ngFor="let role of titles" [value]="role">{{ role }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Days On Board -->
+        <mat-form-field appearance="outline">
+            <mat-label>Days On Board</mat-label>
+            <input matInput type="number" [(ngModel)]="crew.daysOnBoard" name="daysOnBoard" required>
+        </mat-form-field>
+
+        <!-- Daily Rate -->
+        <mat-form-field appearance="outline">
+            <mat-label>Daily Rate</mat-label>
+            <input matInput type="number" [(ngModel)]="crew.dailyRate" name="dailyRate" required>
+        </mat-form-field>
+
+        <!-- Currency -->
+        <mat-form-field appearance="outline">
+            <mat-label>Currency</mat-label>
+            <mat-select [(ngModel)]="crew.currency" name="currency">
+                <mat-option value="USD">USD</mat-option>
+                <mat-option value="EUR">EUR</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Total Income (Read-Only) -->
+        <mat-form-field appearance="outline">
+            <mat-label>Total Income</mat-label>
+            <input matInput [value]="crew.daysOnBoard * crew.dailyRate | number" readonly>
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>

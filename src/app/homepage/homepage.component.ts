@@ -7,6 +7,7 @@ import { ConfirmDeleteComponent } from '../common-components/confirm-delete/conf
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AddCrewModalComponent } from './add-crew-modal/add-crew-modal.component';
+import { EditCrewModalComponent } from './edit-crew-modal/edit-crew-modal.component';
 
 //Router
 import { Router } from '@angular/router';
@@ -47,8 +48,17 @@ export class HomepageComponent implements OnInit {
     this.router.navigate([`/crewcard/${id}`]);
   }
 
-  openEditPopup(crew: CrewModel) {
-    console.log(`Edit Popup Açılacak:`, crew);
+  openEditCrewModal(crew: CrewModel): void {
+    const dialogRef = this.dialog.open(EditCrewModalComponent, {
+      width: '500px',
+      data: { crew }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.success) {
+        this.loadCrewData();
+      }
+    });
   }
 
   openDeleteCrewDialog(crew: CrewModel) {

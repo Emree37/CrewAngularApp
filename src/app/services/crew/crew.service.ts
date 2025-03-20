@@ -101,5 +101,12 @@ export class CrewService {
   addCrew(newCrew: CrewModel): void {
     this.crewList.push(newCrew);
   }
+
+  updateCrew(updatedCrew: CrewModel): void {
+    const index = this.crewList.findIndex(crew => crew.id === updatedCrew.id);
+    if (index !== -1) {
+      this.crewList[index] = updatedCrew;
+    }
+  }
 }
 
