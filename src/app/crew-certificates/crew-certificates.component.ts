@@ -6,7 +6,7 @@ import { CertificateService } from '../services/certificate/certificate.service'
 import { CertificateTypeService } from '../services/certificate-type/certificate-type.service';
 import { CrewCertificateService } from '../services/crew-certificate/crew-certificate.service';
 
-import { CertificateViewModel } from '../models/view-models/crew-certificates-view-model';
+import { CrewCertificateViewModel  } from '../models/view-models/crew-certificates-view-model';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { CertificateViewModel } from '../models/view-models/crew-certificates-vi
 })
 export class CrewCertificatesComponent implements OnInit {
   @Input() crewId!: number;
-  certificates: CertificateViewModel[] = [];
+  certificates: CrewCertificateViewModel[] = [];
 
   displayedColumns: string[] = ['name', 'typeName', 'typeDescription', 'issueDate', 'expiryDate'];
 
@@ -55,7 +55,7 @@ export class CrewCertificatesComponent implements OnInit {
           expiryDate: crewCert.expiryDate,
           typeName: type ? type.name : 'Unknown',
           typeDescription: type ? type.description : 'No Description'
-        } as CertificateViewModel;
+        } as CrewCertificateViewModel;
       });
     }
   }

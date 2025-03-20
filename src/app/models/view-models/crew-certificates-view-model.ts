@@ -1,4 +1,4 @@
-export interface CertificateViewModel {
+export interface CrewCertificateViewModel  {
     id: number;
     name: string;
     issueDate: string;

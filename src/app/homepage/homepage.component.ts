@@ -107,4 +107,8 @@ export class HomepageComponent implements OnInit {
   navigateToCertificateType(): void {
     this.router.navigate(['/certificate-type']);
   }
+
+  navigateToCertificates(): void {
+    this.router.navigate(['/certificates']);
+  }
 }
