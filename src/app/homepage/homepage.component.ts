@@ -3,6 +3,7 @@ import { CrewModel } from '../models/crew-model';
 import { CrewService } from '../services/crew/crew.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CrewCertificatesModalComponent } from './crew-certificates-modal/crew-certificates-modal.component';
+import { ConfirmDeleteComponent } from '../common-components/confirm-delete/confirm-delete.component';
 
 //Router
 import { Router } from '@angular/router';
@@ -38,9 +39,23 @@ export class HomepageComponent implements OnInit {
     console.log(`Edit Popup Açılacak:`, crew);
   }
 
-  deleteCrew(id: number) {
-    //this.crewList = this.crewList.filter(crew => crew.id !== id);
-    console.log(`Crew Silindi: ${id}`);
+  openDeleteCrewDialog(crew: CrewModel) {
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      width: '400px',
+      data: {
+        title: 'Delete Crew',
+        message: `Are you sure you want to delete ${crew.firstName} ${crew.lastName}?`,
+        confirmText: 'Delete',
+        cancelText: 'Cancel'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.crewService.softDeleteCrew(crew.id);
+        this.crewList = this.crewService.getCrews();
+      }
+    });
   }
 
   openCertificatesModal(crew: CrewModel) {
