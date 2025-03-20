@@ -17,4 +17,7 @@ export class CertificateTypeService {
     return this.certificateTypes;
   }
 
+  addCertificateType(newType: CertificateTypeModel): void {
+    this.certificateTypes = [...this.certificateTypes, newType];
+  }
 }

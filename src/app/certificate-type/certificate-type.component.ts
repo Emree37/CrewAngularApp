@@ -4,8 +4,10 @@ import { CertificateTypeModel } from '../models/certificate-type-model';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { AddCertificateTypeModalComponent } from './add-certificate-type-modal/add-certificate-type-modal.component';
 
 @Component({
   selector: 'app-certificate-type',
@@ -17,7 +19,7 @@ export class CertificateTypeComponent implements OnInit {
   certificateTypes: CertificateTypeModel[] = [];
   displayedColumns: string[] = ['name', 'description'];
 
-  constructor(private certificateTypeService: CertificateTypeService, private router: Router) { }
+  constructor(private certificateTypeService: CertificateTypeService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadCertificateTypes();
@@ -32,6 +34,16 @@ export class CertificateTypeComponent implements OnInit {
   }
 
   openAddCertificateTypeModal(): void {
-    alert("Add Certificate Type modal açılacak!");
+    const dialogRef = this.dialog.open(AddCertificateTypeModalComponent, {
+      width: '400px',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.certificateTypeService.addCertificateType(result);
+        this.loadCertificateTypes();
+      }
+    });
   }
 }
