@@ -1,0 +1,42 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 90%;
+    max-width: 650px;
+}
+
+.form-container {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.certificate-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.full-width-table {
+    width: 100%;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+}

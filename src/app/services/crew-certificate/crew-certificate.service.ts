@@ -19,4 +19,8 @@ export class CrewCertificateService {
   getCrewCertificates(crewId: number): CrewCertificateModel[] {
     return this.crewCertificates.filter(c => c.crewId === crewId);
   }
+
+  addCrewCertificate(newCrewCertificate: CrewCertificateModel): void {
+    this.crewCertificates.push(newCrewCertificate);
+  }
 }

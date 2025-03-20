@@ -103,11 +103,16 @@
     </mat-card-content>
 </mat-card>
 
-<div class="certificate-type-button-container">
-    <button mat-raised-button color="accent" (click)="navigateToCertificates()">
-        Certificates
+<div class="button-container">
+    <button mat-raised-button color="primary" (click)="openAddCrewModal()">
+        Add Crew
     </button>
-    <button mat-raised-button color="primary" (click)="navigateToCertificateType()">
-        Certificate Types
-    </button>
+    <div class="right-buttons">
+        <button mat-raised-button color="primary" (click)="navigateToCertificates()">
+            Certificates Page
+        </button>
+        <button mat-raised-button color="primary" (click)="navigateToCertificateType()">
+            Certificate Types Page
+        </button>
+    </div>
 </div>

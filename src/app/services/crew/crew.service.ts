@@ -93,5 +93,13 @@ export class CrewService {
       .filter(crew => !crew.isDeleted && crew.currency === 'EUR')
       .reduce((total, crew) => total + crew.totalIncome, 0);
   }
+
+  getNextCrewId(): number {
+    return this.crewList.length > 0 ? Math.max(...this.crewList.map(crew => crew.id)) + 1 : 1;
+  }
+
+  addCrew(newCrew: CrewModel): void {
+    this.crewList.push(newCrew);
+  }
 }
 

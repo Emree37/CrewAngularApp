@@ -24,3 +24,16 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.right-buttons {
+    display: flex;
+    gap: 10px;
+}

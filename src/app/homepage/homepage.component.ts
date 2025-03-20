@@ -6,6 +6,7 @@ import { CrewCertificatesModalComponent } from './crew-certificates-modal/crew-c
 import { ConfirmDeleteComponent } from '../common-components/confirm-delete/confirm-delete.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AddCrewModalComponent } from './add-crew-modal/add-crew-modal.component';
 
 //Router
 import { Router } from '@angular/router';
@@ -89,18 +90,18 @@ export class HomepageComponent implements OnInit {
 
   updateTotalIncome(discountPercentage: number | null, crew: CrewModel): void {
     this.discountValues[crew.id] = discountPercentage ?? 0;
-  
+
     const originalTotalIncome = crew.daysOnBoard * crew.dailyRate;
-  
-    
+
+
     if (discountPercentage == null || isNaN(discountPercentage)) {
       crew.totalIncome = originalTotalIncome;
-    } 
+    }
     else {
       const validDiscount = Math.max(0, Math.min(100, discountPercentage));
       crew.totalIncome = Math.round(originalTotalIncome * (1 - validDiscount / 100));
     }
-  
+
     this.updateTotalIncomeSummary();
   }
 
@@ -110,5 +111,19 @@ export class HomepageComponent implements OnInit {
 
   navigateToCertificates(): void {
     this.router.navigate(['/certificates']);
+  }
+
+  openAddCrewModal(): void {
+    const dialogRef = this.dialog.open(AddCrewModalComponent, {
+      width: '1000px',
+      maxHeight: '90vh',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadCrewData();
+      }
+    });
   }
 }

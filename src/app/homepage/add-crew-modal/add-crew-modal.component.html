@@ -1,0 +1,118 @@
+<h2 mat-dialog-title>Add New Crew</h2>
+
+<mat-dialog-content class="dialog-content">
+
+    <!-- Crew Form -->
+    <div class="form-container">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput [(ngModel)]="crew.firstName" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="crew.lastName" required>
+        </mat-form-field>
+    </div>
+
+    <div class="form-container">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nationality</mat-label>
+            <mat-select [(ngModel)]="crew.nationality" required>
+                <mat-option *ngFor="let nationality of nationalityList" [value]="nationality">
+                    {{ nationality }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Title</mat-label>
+            <mat-select [(ngModel)]="crew.title" required>
+                <mat-option *ngFor="let title of titleList" [value]="title">
+                    {{ title }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="form-container">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Days On Board</mat-label>
+            <input type="number" matInput [(ngModel)]="crew.daysOnBoard" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Daily Rate</mat-label>
+            <input type="number" matInput [(ngModel)]="crew.dailyRate" required>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="crew.currency" required>
+            <mat-option *ngFor="let currency of currencyList" [value]="currency">
+                {{ currency }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="table-header">
+        <span></span>
+        <button mat-raised-button color="primary" (click)="toggleCertificateForm()">
+            Add Certificate
+        </button>
+    </div>
+
+    <div *ngIf="showCertificateForm" class="certificate-form">
+        <mat-form-field appearance="outline">
+            <mat-label>Certificate</mat-label>
+            <mat-select [(ngModel)]="selectedCertificateId">
+                <mat-option *ngFor="let certificate of availableCertificates" [value]="certificate.id">
+                    {{ certificate.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Issue Date</mat-label>
+            <input matInput type="text" [(ngModel)]="issueDate">
+          </mat-form-field>
+        
+          <mat-form-field appearance="outline">
+            <mat-label>Expiry Date</mat-label>
+            <input matInput type="text" [(ngModel)]="expiryDate">
+          </mat-form-field>
+
+        <button mat-raised-button color="accent" (click)="addCertificate()">Add</button>
+    </div>
+
+    <!-- Certificate Table -->
+    <table mat-table [dataSource]="crewCertificates" class="mat-elevation-z8 full-width-table">
+
+        <ng-container matColumnDef="certificateName">
+            <th mat-header-cell *matHeaderCellDef> Certificate Name </th>
+            <td mat-cell *matCellDef="let cert"> {{ cert.certificateName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="issueDate">
+            <th mat-header-cell *matHeaderCellDef> Issue Date </th>
+            <td mat-cell *matCellDef="let cert"> {{ cert.issueDate }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expiryDate">
+            <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+            <td mat-cell *matCellDef="let cert"> {{ cert.expiryDate }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['certificateName', 'issueDate', 'expiryDate']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['certificateName', 'issueDate', 'expiryDate'];"></tr>
+    </table>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="close()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="isFormInvalid()">
+        Save
+    </button>
+</mat-dialog-actions>
