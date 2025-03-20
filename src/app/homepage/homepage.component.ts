@@ -103,4 +103,8 @@ export class HomepageComponent implements OnInit {
   
     this.updateTotalIncomeSummary();
   }
+
+  navigateToCertificateType(): void {
+    this.router.navigate(['/certificate-type']);
+  }
 }

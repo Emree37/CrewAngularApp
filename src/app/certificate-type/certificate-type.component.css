@@ -1,0 +1,9 @@
+.button-container {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-container button:last-child {
+    margin-left: auto;
+}
