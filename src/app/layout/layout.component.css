@@ -1,0 +1,23 @@
+.top-navbar {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+.bottom-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.language-selector {
+    width: 150px;
+}
