@@ -1,0 +1,43 @@
+<table mat-table [dataSource]="certificates" class="mat-elevation-z8 full-width-table">
+
+    <!-- Certificate Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Certificate Name </th>
+        <td mat-cell *matCellDef="let cert"> {{ cert.name }} </td>
+    </ng-container>
+
+    <!-- Certificate Type Name Column -->
+    <ng-container matColumnDef="typeName">
+        <th mat-header-cell *matHeaderCellDef> Certificate Type </th>
+        <td mat-cell *matCellDef="let cert"> {{ cert.typeName }} </td>
+    </ng-container>
+
+    <!-- Certificate Type Description Column -->
+    <ng-container matColumnDef="typeDescription">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let cert"> {{ cert.typeDescription }} </td>
+    </ng-container>
+
+    <!-- Issue Date Column -->
+    <ng-container matColumnDef="issueDate">
+        <th mat-header-cell *matHeaderCellDef> Issue Date </th>
+        <td mat-cell *matCellDef="let cert"> {{ cert.issueDate }} </td>
+    </ng-container>
+
+    <!-- Expiry Date Column -->
+    <ng-container matColumnDef="expiryDate">
+        <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+        <td mat-cell *matCellDef="let cert"> {{ cert.expiryDate }} </td>
+    </ng-container>
+
+    <!-- Header Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <!-- Data Rows -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Empty List -->
+<p *ngIf="certificates.length === 0" class="no-data-message">
+    This crew has no certificates.
+</p>

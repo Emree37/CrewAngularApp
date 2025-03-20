@@ -1,0 +1,34 @@
+<mat-card>
+    <mat-card-title class="center-title"> {{ crew.firstName }} {{ crew.lastName }} </mat-card-title>
+
+    <!-- Material Tabs -->
+    <mat-tab-group>
+
+        <!-- Crew Card Tab -->
+        <mat-tab label="Crew Card">
+            <mat-card-content>
+                <p><strong>First Name:</strong> {{ crew.firstName }}</p>
+                <p><strong>Last Name:</strong> {{ crew.lastName }}</p>
+                <p><strong>Nationality:</strong> {{ crew.nationality }}</p>
+                <p><strong>Title:</strong> {{ crew.title }}</p>
+                <p><strong>Days On Board:</strong> {{ crew.daysOnBoard }}</p>
+                <p><strong>Daily Rate:</strong> {{ crew.dailyRate }} {{ crew.currency }}</p>
+                <p><strong>Currency:</strong> {{ crew.currency }}</p>
+                <p><strong>Total Income:</strong> {{ crew.totalIncome }} {{ crew.currency }}</p>
+            </mat-card-content>
+        </mat-tab>
+
+        <!-- Certificates Tab -->
+        <mat-tab label="Certificates">
+            <mat-card-content>
+                <app-crew-certificates [crewId]="crew.id"></app-crew-certificates>
+            </mat-card-content>
+        </mat-tab>
+
+    </mat-tab-group>
+
+</mat-card>
+
+<div class="back-button-container">
+    <button mat-flat-button color="primary" routerLink="/">Back to Homepage</button>
+</div>

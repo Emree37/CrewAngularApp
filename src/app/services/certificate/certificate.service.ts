@@ -16,5 +16,9 @@ export class CertificateService {
   getCertificates(): CertificateModel[] {
     return this.certificates;
   }
+  
+  getCertificatesByIds(certificateIds: number[]): CertificateModel[] {
+    return this.certificates.filter(cert => certificateIds.includes(cert.id));
+  }
 
 }
