@@ -17,7 +17,6 @@ export class CrewService {
       dailyRate: 200,
       currency: 'USD',
       totalIncome: 24000,
-      certificateIds: [1, 2],
       isDeleted: false
     },
     {
@@ -30,7 +29,6 @@ export class CrewService {
       dailyRate: 180,
       currency: 'EUR',
       totalIncome: 27000,
-      certificateIds: [1],
       isDeleted: false
     },
     {
@@ -43,7 +41,6 @@ export class CrewService {
       dailyRate: 190,
       currency: 'USD',
       totalIncome: 20900,
-      certificateIds: [],
       isDeleted: false
     },
     {
@@ -56,7 +53,6 @@ export class CrewService {
       dailyRate: 210,
       currency: 'USD',
       totalIncome: 27300,
-      certificateIds: [1, 2],
       isDeleted: false
     },
     {
@@ -69,7 +65,6 @@ export class CrewService {
       dailyRate: 220,
       currency: 'EUR',
       totalIncome: 30800,
-      certificateIds: [2],
       isDeleted: false
     }
   ];
@@ -78,11 +73,6 @@ export class CrewService {
 
   getCrews(): CrewModel[] {
     return this.crewList.filter(crew => !crew.isDeleted);
-  }
-
-  getCrewCertificateIds(crewId: number): number[] {
-    const crew = this.crewList.find(c => c.id === crewId);
-    return crew ? crew.certificateIds : [];
   }
 
   softDeleteCrew(crewId: number): void {

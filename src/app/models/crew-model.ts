@@ -8,6 +8,5 @@ export interface CrewModel {
     dailyRate:number;
     currency:string;
     totalIncome:number;
-    certificateIds: number[];
     isDeleted: boolean;
 }
