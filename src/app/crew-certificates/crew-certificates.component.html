@@ -1,3 +1,33 @@
+<div class="toolbar">
+    <button mat-raised-button color="primary" (click)="toggleCertificateForm()">
+        <mat-icon>add</mat-icon>
+        Add Certificate
+    </button>
+</div>
+
+<div *ngIf="showCertificateForm" class="certificate-form">
+    <mat-form-field appearance="outline">
+        <mat-label>Certificate</mat-label>
+        <mat-select [(ngModel)]="selectedCertificateId">
+            <mat-option *ngFor="let certificate of availableCertificates" [value]="certificate.id">
+                {{ certificate.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Issue Date</mat-label>
+        <input matInput type="text" [(ngModel)]="issueDate">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Expiry Date</mat-label>
+        <input matInput type="text" [(ngModel)]="expiryDate">
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" (click)="addCertificate()">Add</button>
+</div>
+
 <table mat-table [dataSource]="certificates" class="mat-elevation-z8 full-width-table">
 
     <!-- Certificate Name Column -->
