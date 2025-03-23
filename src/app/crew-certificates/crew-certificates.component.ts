@@ -1,17 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
 
 import { CertificateService } from '../services/certificate/certificate.service';
 import { CertificateTypeService } from '../services/certificate-type/certificate-type.service';
 import { CrewCertificateService } from '../services/crew-certificate/crew-certificate.service';
 
-import { CrewCertificateViewModel  } from '../models/view-models/crew-certificates-view-model';
+import { CrewCertificateViewModel } from '../models/view-models/crew-certificates-view-model';
+
+import { ConfirmDeleteComponent } from '../common-components/confirm-delete/confirm-delete.component';
 
 
 @Component({
   selector: 'app-crew-certificates',
-  imports: [MatTableModule, CommonModule],
+  imports: [MatTableModule, CommonModule, MatIconModule],
   templateUrl: './crew-certificates.component.html',
   styleUrl: './crew-certificates.component.css'
 })
@@ -19,12 +23,13 @@ export class CrewCertificatesComponent implements OnInit {
   @Input() crewId!: number;
   certificates: CrewCertificateViewModel[] = [];
 
-  displayedColumns: string[] = ['name', 'typeName', 'typeDescription', 'issueDate', 'expiryDate'];
+  displayedColumns: string[] = ['name', 'typeName', 'typeDescription', 'issueDate', 'expiryDate', 'remove'];
 
   constructor(
     private certificateService: CertificateService,
     private certificateTypeService: CertificateTypeService,
-    private crewCertificateService: CrewCertificateService
+    private crewCertificateService: CrewCertificateService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -60,4 +65,22 @@ export class CrewCertificatesComponent implements OnInit {
     }
   }
 
+  openDeleteCertificateDialog(cert: CrewCertificateViewModel): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      width: '400px',
+      data: {
+        title: 'Remove Certificate',
+        message: `Are you sure you want to remove the certificate "${cert.name}"?`,
+        confirmText: 'Remove',
+        cancelText: 'Cancel'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.crewCertificateService.removeCrewCertificate(this.crewId, cert.id);
+        this.ngOnInit();
+      }
+    });
+  }
 }
